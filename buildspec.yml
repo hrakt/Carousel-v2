@@ -23,7 +23,7 @@ phases:
             - echo Build started on `date`
             - echo Building Image
             - docker-compose build web
-            - docker tag 377941069960.dkr.ecr.us-east-1.amazonaws.com/haus-app-playground-2020/web:$ENV $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$ENV
+            - docker tag 377941069960.dkr.ecr.us-east-1.amazonaws.com/ui-playground/web:$ENV $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$ENV
     post_build:
         commands:
             - echo Build completed on `date`

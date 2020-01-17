@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
 simpleDocker {
-    name = 'haus-app-playground-2020'
+    name = 'ui-playground'
     build_path = '.next/'
 }

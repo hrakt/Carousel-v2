@@ -1,4 +1,4 @@
-# haus-app-playground-2020
+# ui-playground
 
 This application is built using [NextJS](https://github.com/zeit/next.js/).
 
@@ -6,7 +6,7 @@ This application is built using [NextJS](https://github.com/zeit/next.js/).
 
 <!-- TOC -->
 
--   haus-app-playground-2020
+-   ui-playground
     -   [Basics](#basics)
         -   [Development](#development)
             -   [Run locally](#run-locally)

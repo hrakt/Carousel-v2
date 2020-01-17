@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     web:
-        image: '377941069960.dkr.ecr.us-east-1.amazonaws.com/haus-app-playground-2020/web:${ENV:-local}'
+        image: '377941069960.dkr.ecr.us-east-1.amazonaws.com/ui-playground/web:${ENV:-local}'
         build:
             context: .
             dockerfile: Dockerfile
