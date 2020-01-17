@@ -77,6 +77,8 @@ class CarouselInfiniteThrow extends React.Component {
             TweenLite.set(this.proxy.current, {
                 x: this.centerSplit * this.slideWidth,
             });
+            this.animateSlides(0);
+            this.slideToAnimation.progress(1);
         }
 
         this.setDraggable();
