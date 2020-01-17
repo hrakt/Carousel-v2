@@ -1,0 +1,74 @@
+$tablet: 720px;
+$tabletLandscape: 1024px;
+$desktop: 1120px;
+$largeDesktop: 1440px;
+$hugeDesktop: 1920px;
+$dickModeTouch: landscape;
+
+@mixin tablet {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}
+@mixin tabletLandscape {
+    @media (min-width: $tabletLandscape) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: $desktop) {
+        @content;
+    }
+}
+@mixin largeDesktop {
+    @media (min-width: $largeDesktop) {
+        @content;
+    }
+}
+@mixin hugeDesktop {
+    @media (min-width: $hugeDesktop) {
+        @content;
+    }
+}
+
+@mixin mobileOnly {
+    @media (max-width: #{$tablet - 1}) {
+        @content;
+    }
+}
+@mixin tabletOnly {
+    @media (min-width: $tablet) and (max-width: #{$desktop - 1}) {
+        @content;
+    }
+}
+@mixin desktopOnly {
+    @media (min-width: $desktop) and (max-width: #{$largeDesktop - 1}) {
+        @content;
+    }
+}
+@mixin largeDesktopOnly {
+    @media (min-width: $largeDesktop) and (max-width: #{$hugeDesktop - 1}) {
+        @content;
+    }
+}
+
+@mixin dickModeTouch {
+    @media (orientation: $dickModeTouch) and (max-device-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin dickMode {
+    @media (min-aspect-ratio: 3/1) {
+        @content;
+    }
+}
+
+:export {
+    tablet: $tablet;
+    tabletLandscape: $tabletLandscape;
+    desktop: $desktop;
+    largeDesktop: $largeDesktop;
+    hugeDesktop: $hugeDesktop;
+    dickModeTouch: $dickModeTouch;
+}

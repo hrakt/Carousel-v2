@@ -1,0 +1,31 @@
+@import 'styles/breakpoints';
+
+.error {
+    position: relative;
+    height: 100%;
+    align-content: center;
+    z-index: 0;
+}
+
+.headline {
+    grid-column: 1 / -1;
+    text-transform: lowercase;
+    pointer-events: none;
+    user-select: none;
+    max-width: 70%;
+    margin-bottom: 4.5rem;
+}
+
+@include tablet {
+    .headline {
+        grid-column: 1 / 7;
+        max-width: none;
+        margin-bottom: 6rem;
+    }
+}
+
+@include desktop {
+    .headline {
+        margin-left: -0.8rem;
+    }
+}

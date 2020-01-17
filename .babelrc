@@ -1,0 +1,32 @@
+{
+    "presets": [
+        "next/babel",
+        [
+            "@babel/preset-env",
+            {
+                "corejs": "3",
+                "useBuiltIns": "usage",
+                "debug": false
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        [
+            "module-resolver",
+            {
+                "root": ["./"],
+                "alias": {
+                    "components": "./components",
+                    "hooks": "./hooks",
+                    "pages": "./pages",
+                    "services": "./services",
+                    "public": "./public",
+                    "store": "./store",
+                    "styles": "./styles",
+                    "utils": "./utils"
+                }
+            }
+        ]
+    ]
+}

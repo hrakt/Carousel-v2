@@ -1,0 +1,16 @@
+# Inherit from base node
+FROM node:10.15.2
+ARG NPM_REGISTRY=https://registry.npmjs.org/
+ARG PACKAGE_INSTALLER=npm
+
+# Set our env vars
+ENV PORT=3000\
+    PATH=/app/user/node_modules/.bin:$PATH
+
+# Create some needed directories
+RUN mkdir -p /app/user && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* &&\
+    ${PACKAGE_INSTALLER} config set registry "$NPM_REGISTRY"
+
+WORKDIR /app/user
+RUN echo "${PACKAGE_INSTALLER} install && ${PACKAGE_INSTALLER} run dev" >> /root/.bashrc

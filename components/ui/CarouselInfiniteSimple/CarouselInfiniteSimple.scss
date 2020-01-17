@@ -1,0 +1,101 @@
+.container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.proxytrigger {
+    position: relative;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.track {
+    position: relative;
+    display: flex;
+    width: 9000px;
+}
+
+.proxy {
+    display: none;
+}
+
+$slideWidth: 25vw;
+
+.slide {
+    position: relative;
+    width: $slideWidth;
+    height: 400px;
+    padding-right: 2rem;
+}
+
+.image {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slideNumber {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+}
+
+.captionAside {
+    position: relative;
+    background-color: blueviolet;
+    width: 100%;
+    padding: 4rem;
+    font-size: 1.4rem;
+    height: 20rem;
+}
+
+.captionAsideInner {
+    position: relative;
+}
+
+.controls {
+    position: relative;
+    background-color: rgb(192, 72, 216);
+    width: 100%;
+    padding: 0 4rem;
+    height: 5rem;
+    display: flex;
+}
+
+.controlButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: blue;
+    padding: 1rem;
+    margin: 0 3rem;
+    font-size: 8rem;
+    line-height: 1;
+    cursor: pointer;
+}

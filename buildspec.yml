@@ -1,0 +1,32 @@
+version: 0.2
+
+artifacts:
+    files:
+        - Dockerrun.aws.json
+eb_codebuild_settings:
+    ComputeType: BUILD_GENERAL1_SMALL
+phases:
+    pre_build:
+        commands:
+            - echo Logging in to Amazon ECR...
+            - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+            - echo Setup Build ENVS...
+            - sed -i='' "s#<AWS_ACCOUNT_ID>#$AWS_ACCOUNT_ID#" Dockerrun.aws.json
+            - sed -i='' "s#<AWS_DEFAULT_REGION>#$AWS_DEFAULT_REGION#" Dockerrun.aws.json
+            - sed -i='' "s#<IMAGE_REPO_NAME>#$IMAGE_REPO_NAME#" Dockerrun.aws.json
+            - sed -i='' "s#<ENV>#$ENV#" Dockerrun.aws.json
+            - echo Create ENV...
+            - envs=$(env)
+            - echo "$envs" >> .env
+    build:
+        commands:
+            - echo Build started on `date`
+            - echo Building Image
+            - docker-compose build web
+            - docker tag 377941069960.dkr.ecr.us-east-1.amazonaws.com/haus-app-playground-2020/web:$ENV $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$ENV
+    post_build:
+        commands:
+            - echo Build completed on `date`
+            - echo Pushing image...
+            - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$ENV
+            - aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
