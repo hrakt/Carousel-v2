@@ -25,13 +25,25 @@
     display: none;
 }
 
-$slideWidth: 100%;
-
 .slide {
     position: absolute;
-    width: $slideWidth;
+    width: 100%;
     height: 100%;
-    // padding-right: 2rem;
+
+    .outline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    &.currentSlide {
+        .outline {
+            border: 10px solid rgb(123, 255, 0);
+        }
+    }
 }
 
 .image {
@@ -42,6 +54,7 @@ $slideWidth: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
+    opacity: 0.3;
 }
 
 .slideNumber {

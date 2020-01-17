@@ -16,7 +16,7 @@ class DefaultApp extends App {
         return (
             <React.Fragment>
                 <Head>
-                    <title>App</title>
+                    <title>Playground</title>
                 </Head>
                 <Provider store={store}>
                     <Component {...pageProps} />

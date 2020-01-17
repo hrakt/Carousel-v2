@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import cx from 'classnames';
+
 import Draggable from 'gsap/Draggable';
 import TweenLite from 'gsap/TweenLite';
 import TweenMax, { Linear } from 'gsap/TweenMax';
@@ -35,6 +37,8 @@ class CarouselInfiniteThrow extends React.Component {
 
     draggable = null;
 
+    centerSplit = 0;
+
     componentDidMount() {
         this.slideCount = this.slides.length;
 
@@ -45,13 +49,13 @@ class CarouselInfiniteThrow extends React.Component {
             });
         });
 
-        // use this function to create a modifying equation the for xPercent animation
+        // use this function to create a modifier the for xPercent animation
         const infiniteModifier = this.infiniteWrap(
             -100,
             (this.slideCount - 1) * 100
         );
 
-        // the animation that moves the slides with the modifying equation that creates a loop.
+        // the animation that moves the slides with the modifier that creates a loop.
         this.baseAnimation = TweenMax.to(this.slides, 1, {
             xPercent: '+=' + this.slideCount * 100,
             ease: Linear.easeNone,
@@ -67,6 +71,14 @@ class CarouselInfiniteThrow extends React.Component {
         this.slideToAnimation = TweenLite.to({}, 0.1, {});
 
         this.handleResize();
+
+        if (this.props.center) {
+            this.centerSplit = Math.round(this.props.visibleSlideCount / 2) - 1;
+            TweenLite.set(this.proxy.current, {
+                x: this.centerSplit * this.slideWidth,
+            });
+        }
+
         this.setDraggable();
 
         if (this.props.autoPlay) {
@@ -176,12 +188,17 @@ class CarouselInfiniteThrow extends React.Component {
             guessSlide = guessSlide - this.slideCount;
         }
 
-        // at the loop guess the 0 or last slide so there is null moment
-        if (
-            guessSlide - 1 < this.slideCount &&
-            Math.round(guessSlide - 1 + 0.5) >= this.slideCount
-        ) {
+        // center is current
+        if (this.props.center) {
+            guessSlide = guessSlide + this.centerSplit;
+        }
+
+        if (guessSlide === this.slideCount) {
             guessSlide = 0;
+        }
+
+        if (guessSlide > this.slideCount) {
+            guessSlide = Math.abs(guessSlide - this.slideCount);
         }
 
         if (guessSlide !== this.state.currentSlide) {
@@ -207,7 +224,7 @@ class CarouselInfiniteThrow extends React.Component {
         return Math.round(x / this.slideWidth) * this.slideWidth;
     };
 
-    // infinite wrapping equation
+    // infinite wrapping function
     // at 0 last is -1, at last 0 is + 1
     infiniteWrap = (min, max) => {
         var r = max - min;
@@ -220,10 +237,13 @@ class CarouselInfiniteThrow extends React.Component {
     renderSlide = (item, i) => {
         return (
             <div
-                className={styles.slide}
+                className={cx(styles.slide, {
+                    [styles.currentSlide]: i === this.state.currentSlide,
+                })}
                 key={i}
                 ref={el => (this.slides[i] = el)}
             >
+                <div className={styles.outline}></div>
                 {item.image && (
                     <div
                         className={styles.image}
@@ -306,6 +326,7 @@ CarouselInfiniteThrow.propTypes = {
     autoPanReverse: PropTypes.bool,
     snap: PropTypes.bool,
     visibleSlideCount: PropTypes.number,
+    center: PropTypes.bool,
     slidesData: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -319,6 +340,7 @@ CarouselInfiniteThrow.defaultProps = {
     autoPanReverse: false,
     snap: true,
     visibleSlideCount: 1,
+    center: false,
     slidesData: [
         {
             caption:
