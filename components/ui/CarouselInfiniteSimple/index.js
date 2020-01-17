@@ -24,8 +24,6 @@ const CarouselInfiniteSimple = props => {
     let slideCount = 0;
     let trackWidth = 0;
 
-    let draggable = null;
-
     useEffect(() => {
         slideWidth = track.current.firstChild.clientWidth;
         slideCount = track.current.children.length / 2;
@@ -42,7 +40,7 @@ const CarouselInfiniteSimple = props => {
             return;
         }
 
-        draggable = Draggable.create(proxy.current, {
+        Draggable.create(proxy.current, {
             type: 'x',
             trigger: proxytrigger.current,
             onDrag: onDrag,
