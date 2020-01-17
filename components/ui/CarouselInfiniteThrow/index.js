@@ -41,6 +41,7 @@ class CarouselInfiniteThrow extends React.Component {
         this.slides.map((slide, i) => {
             TweenLite.set(slide, {
                 xPercent: i * 100,
+                width: `calc(100% / ${this.props.visibleSlideCount})`,
             });
         });
 
@@ -304,6 +305,7 @@ CarouselInfiniteThrow.propTypes = {
     autoPanResetTimer: PropTypes.number,
     autoPanReverse: PropTypes.bool,
     snap: PropTypes.bool,
+    visibleSlideCount: PropTypes.number,
     slidesData: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -316,6 +318,7 @@ CarouselInfiniteThrow.defaultProps = {
     autoPanResetTimer: 2,
     autoPanReverse: false,
     snap: true,
+    visibleSlideCount: 1,
     slidesData: [
         {
             caption:
