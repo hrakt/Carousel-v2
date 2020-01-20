@@ -117,9 +117,7 @@ class CarouselInfiniteThrow extends React.Component {
     };
 
     updateDraggable = () => {
-        this.props.autoPlay && this.timer.restart(true);
-        this.autoPanReset();
-        this.slideToAnimation.kill();
+        this.reset();
         this.draggable[0].update();
     };
 
@@ -131,9 +129,7 @@ class CarouselInfiniteThrow extends React.Component {
     };
 
     animateSlides = dir => {
-        this.props.autoPlay && this.timer.restart(true);
-        this.autoPanReset();
-        this.slideToAnimation.kill();
+        this.reset();
 
         const x = this.snapX(this.proxyTransform.x + dir * this.slideWidth);
 
@@ -259,11 +255,11 @@ class CarouselInfiniteThrow extends React.Component {
         );
     };
 
-    renderControls = () => {
+    renderArrows = () => {
         return (
             <div className={styles.controls}>
                 <div
-                    className={styles.controlButton}
+                    className={styles.arrowButton}
                     onClick={() => {
                         this.animateSlides(1);
                     }}
@@ -271,13 +267,61 @@ class CarouselInfiniteThrow extends React.Component {
                     &lsaquo;
                 </div>
                 <div
-                    className={styles.controlButton}
+                    className={styles.arrowButton}
                     onClick={() => {
                         this.animateSlides(-1);
                     }}
                 >
                     &rsaquo;
                 </div>
+            </div>
+        );
+    };
+
+    handleDotClick = e => {
+        this.reset();
+
+        const index = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+        const distance = index - this.state.currentSlide;
+
+        const x = this.snapX(
+            this.proxyTransform.x - distance * this.slideWidth
+        );
+
+        this.slideToAnimation = TweenLite.to(
+            this.proxy.current,
+            this.props.duration,
+            {
+                x: x,
+                onUpdate: this.updateProgress,
+            }
+        );
+    };
+
+    reset = () => {
+        this.props.autoPlay && this.timer.restart(true);
+        this.autoPanReset();
+        this.slideToAnimation.kill();
+    };
+
+    renderDots = () => {
+        return (
+            <div className={styles.controls}>
+                {this.props.slidesData.map((item, i) => {
+                    return (
+                        <div
+                            className={cx(styles.dot, {
+                                [styles.currentDot]:
+                                    this.state.currentSlide === i,
+                            })}
+                            key={i}
+                            onClick={this.handleDotClick}
+                            data-index={i}
+                        >
+                            <div className="sr-only">{i}</div>
+                        </div>
+                    );
+                })}
             </div>
         );
     };
@@ -311,7 +355,8 @@ class CarouselInfiniteThrow extends React.Component {
                     </div>
                 </div>
                 <div className={styles.proxy} ref={this.proxy}></div>
-                {this.renderControls()}
+                {this.renderArrows()}
+                {this.renderDots()}
                 {this.renderCaptionAside()}
             </div>
         );
