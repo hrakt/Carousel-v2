@@ -34,6 +34,7 @@ class CarouselInfiniteThrow extends React.Component {
     baseAnimation = null;
     slideToAnimation = null;
     timer = null;
+    autoPanTimer = null;
 
     draggable = null;
 
@@ -123,8 +124,11 @@ class CarouselInfiniteThrow extends React.Component {
 
     autoPanReset = () => {
         if (this.props.autoPan) {
-            this.autoPanTween && this.autoPanTween.kill();
-            TweenLite.delayedCall(this.props.autoPanResetTimer, this.autoPan);
+            this.autoPanTimer && this.autoPanTimer.kill();
+            this.autoPanTimer = TweenLite.delayedCall(
+                this.props.autoPanResetTimer,
+                this.autoPan
+            );
         }
     };
 
@@ -156,7 +160,7 @@ class CarouselInfiniteThrow extends React.Component {
     };
 
     autoPan = () => {
-        this.autoPanTween = TweenMax.to(
+        this.slideToAnimation = TweenMax.to(
             this.proxy.current,
             this.props.autoPanDuration,
             {
