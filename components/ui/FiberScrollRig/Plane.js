@@ -3,7 +3,7 @@ import { useFrame } from 'react-three-fiber';
 import lerp from 'lerp';
 import PropTypes from 'prop-types';
 
-import { useBlock } from './blocks';
+import { useBlock } from './Blocks';
 
 import config from './config';
 import './CustomMaterial';
