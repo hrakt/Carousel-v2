@@ -9,26 +9,11 @@ class Landing extends Component {
     render() {
         return (
             <main className={styles.landing}>
-                <h1>Carousel Infinite Throw: Default</h1>
-                <CarouselInfiniteThrow />
-                <h1>Carousel Infinite Throw: No Snap, Center, 3-Up</h1>
-                <CarouselInfiniteThrow
-                    snap={false}
-                    center
-                    visibleSlideCount={3}
-                />
-                <h1>Carousel Infinite Throw: AutoPan, 5-Up</h1>
-                <CarouselInfiniteThrow autoPan center visibleSlideCount={5} />
+                <h1>Carousel Infinite Throw: Center, 5-Up</h1>
+                <CarouselInfiniteThrow center visibleSlideCount={5} />
                 <h1>
                     Carousel Infinite Throw: Auto Pan Reverse, No Snap, 2-Up
                 </h1>
-                <CarouselInfiniteThrow
-                    snap={false}
-                    visibleSlideCount={2}
-                    autoPan
-                    autoPanReverse
-                    autoPanResetTimer={4}
-                />
                 <h1>Carousel Infinite 3D</h1>
                 <CarouselInfinite3D />
             </main>

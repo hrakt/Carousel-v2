@@ -1,3 +1,4 @@
 import Landing from './landing';
+import Fiber from './fiver';
 
-export default Landing;
+export { Landing, Fiber };

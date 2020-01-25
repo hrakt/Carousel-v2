@@ -25,9 +25,7 @@ export default class MyDocument extends Document {
                     <meta name="twitter:creator" content="" />
                 </Head>
                 <body>
-                    <div id="__background_portal__"></div>
                     <Main />
-                    <div id="__foreground_portal__" />
                     <NextScript />
                 </body>
             </html>

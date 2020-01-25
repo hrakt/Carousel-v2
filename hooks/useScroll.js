@@ -15,9 +15,9 @@ function useScroll(callback) {
         window[`${method}EventListener`]('optimizedScroll', handleScroll);
     };
 
-    const handleScroll = () => {
+    const handleScroll = e => {
         if (typeof callback === 'function') {
-            callback();
+            callback(e);
         }
     };
 }

@@ -22,7 +22,7 @@ module.exports = withPlugins([
                 }
                 config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
                 config.module.rules.push({
-                    test: /\.(frag|vert|glsl)$/,
+                    test: /\.(frag|vert|glsl|glb)$/,
                     loader: ['raw-loader'],
                 });
                 config.plugins.push(
