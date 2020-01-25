@@ -1,27 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 
-import useScroll from 'hooks/useScroll';
+import FiberView from './FiberView';
 
-import FiberScrollRig from 'components/ui/FiberScrollRig';
-
-import styles from './Fiber.scss';
-import config from 'components/ui/FiberScrollRig/config';
-
-const Fiber = () => {
-    useScroll(e => {
-        config.top.current = e.target.scrollY;
-    });
-
-    // on refresh native browser scroll position is honored
-    useEffect(() => {
-        config.top.current = window.scrollY;
-    }, []);
-
-    return (
-        <main className={styles.fiber}>
-            <FiberScrollRig />
-        </main>
-    );
-};
+class Fiber extends Component {
+    render() {
+        return <FiberView />;
+    }
+}
 
 export default Fiber;
