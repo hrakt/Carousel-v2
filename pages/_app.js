@@ -4,10 +4,6 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 
-import withRedux from 'next-redux-wrapper';
-
-import { makeStore } from 'store';
-
 class DefaultApp extends App {
     render() {
         const { Component, pageProps } = this.props;
@@ -23,4 +19,4 @@ class DefaultApp extends App {
     }
 }
 
-export default withRedux(makeStore)(DefaultApp);
+export default DefaultApp;
