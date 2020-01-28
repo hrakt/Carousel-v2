@@ -1,0 +1,26 @@
+.sliderContainer {
+  display: flex;
+}
+
+.previous {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  border: 1px solid black;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.next {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  border: 1px solid black;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
