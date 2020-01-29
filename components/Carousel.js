@@ -16,7 +16,7 @@ const Carousel = () => {
     const track = React.createRef();
 
     const slideArr = [0, 1, 2, 3, 4, 5];
-    const upperLimit = overlayPics.length - 1;
+    const upperLimit = slideArr.length - 1;
 
     useEffect(() => {
         const node = track.current;
@@ -34,6 +34,11 @@ const Carousel = () => {
         };
     });
 
+    const handleAnimation = direction => {
+        console.log(direction);
+        directions = direction;
+    };
+
     const handleArrows = event => {
         if (!isAnimating) {
             if (event.keyCode === 39) {
@@ -47,6 +52,7 @@ const Carousel = () => {
     const handleClick = direction => {
         setIsAnimating(true);
         let newSlideNumber = currentSlide + direction;
+        direction = direction;
         setShifting(true);
 
         setCurrentSlide(newSlideNumber);
@@ -69,9 +75,9 @@ const Carousel = () => {
 
     const cloneSlides = () => {
         let children = [];
-        overlayPics.map((item, index) => {
-            // console.log(item.file.url);
 
+        overlayPics.map((item, index) => {
+            console.log(item);
             children.push(
                 <div
                     key={index}
@@ -86,20 +92,6 @@ const Carousel = () => {
         return children;
     };
 
-    const renderSlide = (item, index) => {
-        console.log(item);
-        return (
-            <div className={cx(styles.slide)} key={index}>
-                <div
-                    className={styles.box}
-                    style={{
-                        backgroundImage: `url(${item.file.url})`,
-                    }}
-                />
-            </div>
-        );
-    };
-
     const className = cx(styles.track, {
         [styles.shifting]: shifting,
     });
@@ -110,29 +102,38 @@ const Carousel = () => {
                 <div>CurrentSlide:{currentSlide}</div>
                 <div>Direction:{direction}</div>
             </div>
-
-            <Slider {...{ handleClick, isAnimating }} previous />
-            <div className={styles.bigContainer}>
-                <div
-                    className={className}
-                    // style={{
-                    //     transform: `translateX(${(currentSlide +
-                    //         upperLimit +
-                    //         1) *
-                    //         -slideLength}px)`,
-                    // }}
-                    ref={track}
-                    onTransitionEnd={resetSlide}
-                >
-                    {/* {cloneSlides()} */}
-                    {overlayPics.map((item, index) => {
-                        return renderSlide(item, index);
-                    })}
-                    {/* {cloneSlides()} */}
+            <div className={styles.bottomContainer}>
+                <Slider {...{ handleClick, isAnimating }} previous />
+                <div className={styles.bigContainer}>
+                    <div
+                        className={className}
+                        style={{
+                            transform: `translateX(${(currentSlide +
+                                upperLimit +
+                                1) *
+                                -slideLength}px)`,
+                        }}
+                        ref={track}
+                        onTransitionEnd={resetSlide}
+                    >
+                        {cloneSlides()}
+                        {overlayPics.map((item, index) => {
+                            console.log(item);
+                            return (
+                                <div
+                                    key={index}
+                                    className={styles.box}
+                                    style={{
+                                        backgroundImage: `url(${item.file.url})`,
+                                    }}
+                                />
+                            );
+                        })}
+                        {cloneSlides()}
+                    </div>
                 </div>
+                <Slider {...{ handleClick, isAnimating }} next />
             </div>
-            <Slider {...{ handleClick, isAnimating }} next />
-
             <Navbar
                 {...{
                     currentSlide,
