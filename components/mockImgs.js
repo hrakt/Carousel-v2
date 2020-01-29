@@ -3,7 +3,7 @@ export const overlayPics = [
         index: 1,
         name: 'group',
         file: {
-            url: '/public/images/overlay_1.png',
+            url: '/images/overlay_1.png',
             details: { image: { width: 338, height: 328 } },
         },
     },
