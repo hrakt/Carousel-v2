@@ -12,6 +12,7 @@ const Carousel = () => {
     const [shifting, setShifting] = useState(false);
     const [slideLength, setSlideLength] = useState(null);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [timerState, setTimerState] = useState(false);
 
     const track = React.createRef();
 
@@ -25,6 +26,10 @@ const Carousel = () => {
         const trackLength = Number(style.width.replace('px', ''));
         setSlideLength(trackLength / childrenCount);
     });
+
+    useEffect(() => {
+        console.log(timerState);
+    }, [timerState]);
 
     useEffect(() => {
         document.addEventListener('keydown', handleArrows, false);
@@ -47,6 +52,11 @@ const Carousel = () => {
                 handleClick(-1);
             }
         }
+    };
+
+    const handleTimer = () => {
+        setTimerState(!timerState);
+        setInterval(() => handleClick(1), 3000);
     };
 
     const handleClick = direction => {
@@ -101,6 +111,9 @@ const Carousel = () => {
             <div>
                 <div>CurrentSlide:{currentSlide}</div>
                 <div>Direction:{direction}</div>
+            </div>
+            <div>
+                <input type="checkbox" onClick={handleTimer} />
             </div>
             <div className={styles.bottomContainer}>
                 <Slider {...{ handleClick, isAnimating }} previous />
