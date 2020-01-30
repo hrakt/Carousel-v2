@@ -1,0 +1,13 @@
+[x] fix the clone slides issue with not 
+[x] make the arrows bigger
+[x] the the current image to be in the middle
+[x] edit  the size of the images to be bigger
+[x] fix the navingation slider indicator
+
+[] add timer incrementation
+[] add the timer to the navigation on the bottom
+[] calculate the offset in order to have the selected image in the middle
+[] responsiveness of images
+[] add react-spring for the animation library
+
+
