@@ -1,26 +1,27 @@
 .sliderContainer {
-  display: flex;
+    display: flex;
+    font-size: 15px;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .previous {
-  height: 1.5rem;
-  width: 1.5rem;
-  position: relative;
-  border: 1px solid black;
-  cursor: pointer;
+    height: 3.5rem;
+    width: 3.5rem;
+    position: relative;
+    border: 1px solid black;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .next {
-  height: 1.5rem;
-  width: 1.5rem;
-  position: relative;
-  border: 1px solid black;
-  cursor: pointer;
+    height: 3.5rem;
+    width: 3.5rem;
+    position: relative;
+    border: 1px solid black;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

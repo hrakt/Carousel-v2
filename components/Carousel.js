@@ -16,7 +16,7 @@ const Carousel = () => {
     const track = React.createRef();
 
     const slideArr = [0, 1, 2, 3, 4, 5];
-    const upperLimit = slideArr.length - 1;
+    const upperLimit = overlayPics.length - 1;
 
     useEffect(() => {
         const node = track.current;
@@ -34,10 +34,10 @@ const Carousel = () => {
         };
     });
 
-    const handleAnimation = direction => {
-        console.log(direction);
-        directions = direction;
-    };
+    // const handleAnimation = direction => {
+    //     console.log(direction);
+    //     directions = direction;
+    // };
 
     const handleArrows = event => {
         if (!isAnimating) {
@@ -52,7 +52,6 @@ const Carousel = () => {
     const handleClick = direction => {
         setIsAnimating(true);
         let newSlideNumber = currentSlide + direction;
-        direction = direction;
         setShifting(true);
 
         setCurrentSlide(newSlideNumber);
@@ -77,15 +76,16 @@ const Carousel = () => {
         let children = [];
 
         overlayPics.map((item, index) => {
-            console.log(item);
-            children.push(
+            return children.push(
                 <div
                     key={index}
                     className={styles.box}
                     style={{
                         backgroundImage: `url(${item.file.url})`,
                     }}
-                />
+                >
+                    {index + 1}
+                </div>
             );
         });
 
@@ -111,14 +111,14 @@ const Carousel = () => {
                             transform: `translateX(${(currentSlide +
                                 upperLimit +
                                 1) *
-                                -slideLength}px)`,
+                                -slideLength}px) translateX(${slideLength -
+                                80}px)`,
                         }}
                         ref={track}
                         onTransitionEnd={resetSlide}
                     >
                         {cloneSlides()}
                         {overlayPics.map((item, index) => {
-                            console.log(item);
                             return (
                                 <div
                                     key={index}
@@ -126,7 +126,9 @@ const Carousel = () => {
                                     style={{
                                         backgroundImage: `url(${item.file.url})`,
                                     }}
-                                />
+                                >
+                                    {index + 1}
+                                </div>
                             );
                         })}
                         {cloneSlides()}

@@ -1,28 +1,28 @@
 .mainContainer {
-  position: relative;
-  height: 20px;
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  padding-top: 20px;
+    position: relative;
+    height: 20px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
 }
 
 .tick {
-  position: relative;
-  width: 15px;
-  height: 4px;
-  background-color: rgba(128, 128, 128, 0.345);
+    position: relative;
+    width: 15px;
+    height: 4px;
+    background-color: rgba(128, 128, 128, 0.345);
 
-  &:not(:last-child) {
-    margin-right: 1rem;
-  }
+    &:not(:last-child) {
+        margin-right: 1rem;
+    }
 
-  &__selected {
-    background-color: rgb(128, 128, 128);
-  }
+    &__selected {
+        background-color: rgb(128, 128, 128);
+    }
 
-  &:hover {
-    background-color: rgb(128, 128, 128);
-    cursor: pointer;
-  }
+    &:hover {
+        background-color: rgb(128, 128, 128);
+        cursor: pointer;
+    }
 }

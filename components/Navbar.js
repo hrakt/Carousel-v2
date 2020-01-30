@@ -1,5 +1,8 @@
+import React from 'react';
 import styles from './Navbar.module.scss';
 import cx from 'classnames';
+
+import { overlayPics } from './mockImgs';
 
 const Navbar = ({
     currentSlide,
@@ -13,9 +16,13 @@ const Navbar = ({
         setIsAnimating(true);
         setShifting(true);
     };
+
+    currentSlide < 0
+        ? (currentSlide = overlayPics.length + currentSlide)
+        : null;
     return (
         <div className={styles.mainContainer}>
-            {slideArr.map(index => (
+            {overlayPics.map((item, index) => (
                 <div
                     key={index}
                     onClick={() => handleSwitch(index)}
