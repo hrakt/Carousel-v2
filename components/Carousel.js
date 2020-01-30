@@ -16,7 +16,6 @@ const Carousel = () => {
 
     const track = React.createRef();
 
-    const slideArr = [0, 1, 2, 3, 4, 5];
     const upperLimit = overlayPics.length - 1;
 
     useEffect(() => {
@@ -27,9 +26,7 @@ const Carousel = () => {
         setSlideLength(trackLength / childrenCount);
     });
 
-    useEffect(() => {
-        console.log(timerState);
-    }, [timerState]);
+    useEffect(() => {}, [timerState]);
 
     useEffect(() => {
         document.addEventListener('keydown', handleArrows, false);
@@ -56,7 +53,6 @@ const Carousel = () => {
 
     const handleTimer = () => {
         setTimerState(!timerState);
-        setInterval(() => handleClick(1), 3000);
     };
 
     const handleClick = direction => {

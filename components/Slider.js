@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './Slider.module.scss';
 
 const Slider = ({ next, previous, isAnimating, handleClick }) => {
@@ -22,6 +24,13 @@ const Slider = ({ next, previous, isAnimating, handleClick }) => {
             )}
         </div>
     );
+};
+
+Slider.propTypes = {
+    next: PropTypes.bool,
+    previous: PropTypes.bool,
+    isAnimating: PropTypes.bool,
+    handleClick: PropTypes.func,
 };
 
 export default Slider;

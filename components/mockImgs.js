@@ -31,4 +31,12 @@ export const overlayPics = [
             details: { image: { width: 436, height: 480 } },
         },
     },
+    {
+        index: 5,
+        name: 'typography',
+        file: {
+            url: '/images/overlay_4.png',
+            details: { image: { width: 436, height: 480 } },
+        },
+    },
 ];

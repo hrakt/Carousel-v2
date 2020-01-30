@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Navbar.module.scss';
 import cx from 'classnames';
 
@@ -6,7 +7,6 @@ import { overlayPics } from './mockImgs';
 
 const Navbar = ({
     currentSlide,
-    slideArr,
     setCurrentSlide,
     setIsAnimating,
     setShifting,
@@ -33,6 +33,13 @@ const Navbar = ({
             ))}
         </div>
     );
+};
+
+Navbar.propTypes = {
+    currentSlide: PropTypes.number,
+    setCurrentSlide: PropTypes.func,
+    setIsAnimating: PropTypes.func,
+    setShifting: PropTypes.func,
 };
 
 export default Navbar;
