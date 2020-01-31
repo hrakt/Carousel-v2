@@ -13,6 +13,7 @@ const Carousel = () => {
     const [slideLength, setSlideLength] = useState(null);
     const [isAnimating, setIsAnimating] = useState(false);
     const [timerState, setTimerState] = useState(false);
+    let interval = null;
 
     const track = React.createRef();
 
@@ -24,9 +25,12 @@ const Carousel = () => {
         const childrenCount = node.children.length;
         const trackLength = Number(style.width.replace('px', ''));
         setSlideLength(trackLength / childrenCount);
-    });
 
-    useEffect(() => {}, [timerState]);
+        // setTimeout(() => {
+        //     console.log('calling');
+        //     handleClick(1);
+        // }, 3000);
+    }, []);
 
     useEffect(() => {
         document.addEventListener('keydown', handleArrows, false);
@@ -35,11 +39,6 @@ const Carousel = () => {
             document.removeEventListener('keydown', handleArrows, false);
         };
     });
-
-    // const handleAnimation = direction => {
-    //     console.log(direction);
-    //     directions = direction;
-    // };
 
     const handleArrows = event => {
         if (!isAnimating) {
@@ -51,16 +50,12 @@ const Carousel = () => {
         }
     };
 
-    const handleTimer = () => {
-        setTimerState(!timerState);
-    };
-
     const handleClick = direction => {
         setIsAnimating(true);
         let newSlideNumber = currentSlide + direction;
-        setShifting(true);
 
         setCurrentSlide(newSlideNumber);
+        setShifting(true);
         setDirection(direction);
     };
 
@@ -109,7 +104,10 @@ const Carousel = () => {
                 <div>Direction:{direction}</div>
             </div>
             <div>
-                <input type="checkbox" onClick={handleTimer} />
+                <input
+                    type="checkbox"
+                    onClick={() => setTimerState(!timerState)}
+                />
             </div>
             <div className={styles.bottomContainer}>
                 <Slider {...{ handleClick, isAnimating }} previous />
@@ -148,7 +146,6 @@ const Carousel = () => {
             <Navbar
                 {...{
                     currentSlide,
-                    slideArr,
                     setCurrentSlide,
                     setIsAnimating,
                     setShifting,
